@@ -13,60 +13,87 @@ import ListContacts from '../list_contacts/list_contacts';
 class App extends Component {
   constructor(props) {
     super(props);
-    console.log('App Props: ', this.props)
+    this.updateContacts = this.updateContacts.bind(this);
+    this.deleteContact = this.deleteContact.bind(this);
+
     this.state = {
-      status: 0,
-      contacts: this.props.contacts
+      contacts: [],
+      initialData: 0
     }
-    console.log('App.js all contacts: ', this.state.contacts);
-
-    setTimeout(() => {
-      this.setState({
-        status: 1
-      })
-    }, 3000);
-  }
-
-  componentWillMount() {
-    console.log('Component Will Mount');
-    console.log('----------------------------------');
   }
 
   componentDidMount() {
-    console.log('Component Did Mount')
-    console.log('----------------------------------');
+    this.updateContacts();
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('Component will receive props');
-    console.log('nextProps', nextProps);
-    console.log('----------------------------------');
+  deleteContact(data) {
+    var index = this.state.contacts.indexOf(data);
+    var newUpdatedContacts = [];
+    this.state.contacts.forEach((element, i) => {
+      if (i !== index) {
+        newUpdatedContacts.push(element);
+      }
+    })
+    this.setState({
+      contacts: newUpdatedContacts
+    })
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('Should component Update');
-    console.log('nextProps: ', nextProps);
-    console.log('nextState: ', nextState);
-    console.log('----------------------------------');
-    return true;
-  }
-  componentWillUpdate(nextProps, nextState) {
-    console.log('Component Will update');
-    console.log('nextProps: ', nextProps);
-    console.log('nextState: ', nextState);
-    console.log('----------------------------------');
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log('Component Did Update');
-    console.log('prevProps: ', prevProps);
-    console.log('prevState: ', prevState);
-    console.log('----------------------------------');
+  updateContacts(data) {
+    if (this.state.initialData === 0) {
+      this.setState({
+        contacts: this.state.contacts.concat(this.props.contacts),
+        initialData: this.state.initialData + 1
+      });
+    } else if (this.state.initialData > 0 && data) {
+      console.log('data coming from child...', data)
+      this.setState({
+        // this.state.contacts.concat(data)
+        contacts: [data, ...this.state.contacts]
+      }, () => {
+        console.log(this.state.contacts);
+        this.render();
+      });
+    }
   }
 
-  componentWillUnmount() {
-    console.log('Component Will Unmount')
-  }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   var msg = 'COMPONENT SHOULD UPDATE';
+  //   console.log(msg);
+  //   return true;
+  // }
+  // componentWillMount() {
+  //   console.log('Component Will Mount');
+  //   console.log('----------------------------------');
+  // }
+
+  // componentWillReceiveProps(nextProps) {
+  //   console.log('Component will receive props');
+  //   console.log('nextProps', nextProps);
+  //   console.log('----------------------------------');
+  // }
+
+
+  // componentWillUpdate(nextProps, nextState) {
+  //   console.log('Component Will update');
+  //   console.log('nextProps: ', nextProps);
+  //   console.log('nextState: ', nextState);
+  //   console.log('----------------------------------');
+  // }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log('Component Did Update');
+  //   console.log('prevProps: ', prevProps);
+  //   console.log('prevState: ', prevState);
+  //   console.log('----------------------------------');
+  // }
+
+  // componentWillUnmount() {
+  //   console.log('Component Will Unmount')
+  // }
+
+
   render() {
     return (
       <div>
@@ -78,13 +105,13 @@ class App extends Component {
           <Grid>
             <Row className="show-grid">
               <Col xs={6} md={4}>
-                <AddContact renderParent={this.render}/>
+                <AddContact updateMyContacts={this.updateContacts} contacts={this.state.contacts} />
               </Col>
               <Col xs={6} md={4}>
                 <ContactView />
               </Col>
               <Col xsHidden md={4}>
-                <ListContacts renderParent={this.render}/>
+                <ListContacts deleteContact={this.deleteContact} contacts={this.state.contacts} />
               </Col>
             </Row>
           </Grid>

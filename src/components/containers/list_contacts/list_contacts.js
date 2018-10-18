@@ -10,51 +10,45 @@ import './list_contacts.css';
 class ListContacts extends Component {
     constructor(props) {
         super(props);
+        this.forcingUpdate = this.forcingUpdate.bind(this);
+        this.renderContactList = this.renderContactList.bind(this);
 
         this.state = {
-            contacts: this.props.contacts,
-            // renderContacts: this.props.renderContacts,
-            contactsLength: []
+            contacts: [],
         }
+    }
 
-        // console.log('Contact list: ', this.state.contacts);
+    forcingUpdate() {
+        this.forceUpdate();
     }
 
     componentWillReceiveProps(props) {
-        console.log('receiving props... ', props)
+        // console.log('receiving props... ', props)
+        this.forcingUpdate();
+        this.render();
     }
 
-    // componentDidMount() {
-    //     this.setState({
-    //         contactsLength: [
-    //             ...this.state.contactsLength, this.state.contacts.length
-    //         ]
-    //     }, () => {
-    //         // console.log('length: ', this.state.contactsLength);
-    //     });
+    // componentWillMount() {
+    //     console.log('Will mount :: ' , this.state.contacts);
     // }
 
-
-    deleteContact(data, index) {
-        console.log('DELETE BUTTON CLICKED');
-        console.log('data: ', data);
-        console.log('index: ', index);
-        console.log(this.props.contacts);
-        console.log('--------------------------------------------');
-
-        // var index = this.props.contacts.indexOf(data.email);
-
-        // console.log('index of: ', index)
-        // console.log('this.props', this.props.contacts);
-
-        // const deleteContact = this.props.contacts[index];
-        // console.log('delete: ', deleteContact);
+    componentDidMount() {
+        this.setState({
+            contacts: []
+        }, () => {
+            this.setState({
+                contacts: this.state.contacts.concat(this.props.contacts)
+            })
+        })
     }
 
-    shouldComponentUpdate() {
-        alert('COMPONENT UPDATED');
-        console.log('Contact list contacts....', this.state.contacts)
-        return true;
+    deleteContact(data, index) {
+        // console.log('DELETE BUTTON CLICKED');
+        // console.log('data: ', data);
+        // console.log('index: ', index);
+        // console.log(' this.props:', this.props.contacts);
+        // console.log('--------------------------------------------');
+        this.props.deleteContact(data);
     }
 
     renderContactList() {
@@ -88,42 +82,8 @@ class ListContacts extends Component {
         });
     }
 
-    UNSAFE_componentWillUpdate(nextProps, nextState) {
-        // console.log('Will Update');
-        // console.log('nextProps: ', nextProps);
-        // console.log('nextState: ', nextState);
-        // console.log('--------------------------------------------');
-
-        // if (nextProps.contacts.length !== nextState.contacts.length) {
-        //     this.render();
-        // }
-    }
-
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     // If we have a snapshot value, we've just added new items.
-    //     // Adjust scroll so these new items don't push the old ones out of view.
-    //     // (snapshot here is the value returned from getSnapshotBeforeUpdate)
-    //     console.log('Component Did Update');
-    //     console.log('listed contacts: ', this.state.contacts);
-    //     console.log('PrevProps: ', prevProps);
-    //     console.log('prevState: ', prevState);
-    //     console.log('snapshot: ', snapshot);
-    //     console.log('--------------------------------------------');
-    //     this.render();
-    // }
-
-    // componentWillReceiveProps(newProps) {
-    //     console.log('newProps: ', newProps);
-    //     // this.setState({name: newProps.name});
-    // }
-
-    // UNSAFE_componentWillReceiveProps(nextProps) {
-    //     console.log('nextProps: ', nextProps);
-    // }
-
     render() {
-        // this.randomFunction();
-        
+
         return (
             <div>
                 <h3 className="text-center">Contact List</h3>
@@ -135,16 +95,9 @@ class ListContacts extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    // console.log(state.renderContacts)
-    return {
-        contacts: state.contacts,
-        // renderContacts: state.renderContacts
-    }
-}
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ selectContact: selectContact }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListContacts);
+export default connect(null, mapDispatchToProps)(ListContacts);

@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
 import { Form, FormControl, FormGroup, ControlLabel, Modal, Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
-
-// import ListContacts from '../list_contacts/list_contacts'
 
 import './add_contact.css';
 
-// const INHERITED_CLASSES = [Component, ListContacts]
 class AddContact extends Component {
     constructor(props) {
         super(props);
-
         this.handleHide = this.handleHide.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this)
 
         this.state = {
-            renderCotacts: this.props.renderContacts,
             contacts: this.props.contacts,
             show: false,
             firstName: '',
@@ -27,9 +21,8 @@ class AddContact extends Component {
             addressTwo: '',
             city: '',
             state: '',
-            zip: ''
+            zipCode: ''
         }
-
     }
 
     handleHide() {
@@ -37,9 +30,7 @@ class AddContact extends Component {
     }
 
     handleInputChange(event) {
-        // event.preventDefault();
         const { name, value } = event.target;
-        // console.log(`${name}: ${value}`);
 
         this.setState({
             [name]: value
@@ -47,11 +38,6 @@ class AddContact extends Component {
     }
 
     handleSubmit() {
-        // this.setState({renderCotacts: true})
-        // console.log('adding contact...', this.props.renderContacts)
-        // this.props.renderContacts = true;
-
-
         const { firstName, lastName, phoneNumber, email, addressOne, addressTwo, city, state, zip } = this.state
 
         const NEW_CONTACT = {
@@ -67,35 +53,12 @@ class AddContact extends Component {
                 zip: zip
             }
         }
-
-        // this.props.contacts.unshift(NEW_CONTACT);
-
-        
         this.addContact(NEW_CONTACT);
-        // console.log('New Contact added... ', this.props.contacts)
-
-        // return [NEW_CONTACT , ...this.props.contacts];
-        // console.log(this.props.contacts);
-        // this.ListContacts.render();
-        // console.log(this.ListContacts)
-        // console.log('Props: ', this.props)
-        // [NEW_CONTACT, ...this.props.contacts];
-        // const PROPS = this.props.contacts;
-        // this.props.contacts = [NEW_CONTACT, ...PROPS]
     }
 
     addContact(newContact) {
-        // console.log('add_contact.js before update contacts: ', this.state.contacts)
-        const UPDATED_CONTACT_LIST = [newContact, ...this.state.contacts]
-        this.setState({
-            contacts: UPDATED_CONTACT_LIST
-        }, () => {
-            // console.log('add_contact.js after update contacts: ', this.state.contacts);
-        });
-
-        this.props.renderParent();
         this.handleHide();
-        return UPDATED_CONTACT_LIST;
+        this.props.updateMyContacts(newContact);
     }
 
     form() {
@@ -146,7 +109,7 @@ class AddContact extends Component {
                     </FormGroup>{' '}
                     <FormGroup controlId="formInlineEmail" className='mr-2'>
                         <ControlLabel>Zip Code</ControlLabel>{' '}
-                        <FormControl type="text" name='zipCode' onChange={this.handleInputChange} placeholder="10046" />
+                        <FormControl type="text" name='zip' onChange={this.handleInputChange} placeholder="94016" />
                     </FormGroup>{' '}
                 </Form>
 
@@ -208,12 +171,5 @@ class AddContact extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        contacts: state.contacts,
-        renderContacts: state.renderContacts
-    }
-}
-
-export default connect(mapStateToProps)(AddContact);
+export default AddContact;
 
