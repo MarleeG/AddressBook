@@ -15,13 +15,13 @@ class AddContact extends Component {
             show: false,
             firstName: '',
             lastName: '',
-            phoneNumber: '',
+            number: '',
             email: '',
             addressOne: '',
             addressTwo: '',
             city: '',
             state: '',
-            zipCode: ''
+            zip: ''
         }
     }
 
@@ -38,13 +38,13 @@ class AddContact extends Component {
     }
 
     handleSubmit() {
-        const { firstName, lastName, phoneNumber, email, addressOne, addressTwo, city, state, zip } = this.state
+        const { firstName, lastName, number, email, addressOne, addressTwo, city, state, zip } = this.state
 
         const NEW_CONTACT = {
             firstName: firstName,
             lastName: lastName,
             email: email,
-            number: phoneNumber,
+            number: number,
             address: {
                 addressOne: addressOne,
                 addressTwo: addressTwo,
@@ -79,7 +79,7 @@ class AddContact extends Component {
                     </FormGroup>{' '}
                     <FormGroup controlId="formInlineEmail" className='mr-2'>
                         <ControlLabel>Phone Number</ControlLabel>{' '}
-                        <FormControl onChange={this.handleInputChange} name='phoneNumber' type="text" placeholder="123-345-5432" />
+                        <FormControl onChange={this.handleInputChange} name='number' type="text" placeholder="123-345-5432" />
                     </FormGroup>{' '}
                 </Form>
 

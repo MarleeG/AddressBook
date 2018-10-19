@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Alert } from 'react-bootstrap';
-// import { Link, BrowserRouter as Router } from 'react-router-dom';
 
 
 class ContactView extends Component {
-
     // componentWillReceiveProps(props){
     //     console.log('contact view :: ', props)
     // }
@@ -30,7 +28,7 @@ class ContactView extends Component {
                         </h5>
                         <strong>{this.props.contact.firstName} {this.props.contact.lastName}</strong>
                     </div>
-                    
+
                     <div className="card-body text-info">
                         <p className="card-text">Number: {this.props.contact.number}</p>
                         <p className="card-text">Email: {this.props.contact.email}</p>
@@ -55,8 +53,6 @@ class ContactView extends Component {
 }
 
 function mapStateToProps(state) {
-    // console.log('Active Contact: ', state.activeContact)
-
     return {
         contact: state.activeContact,
     }

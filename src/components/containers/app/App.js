@@ -15,6 +15,7 @@ class App extends Component {
     super(props);
     this.updateContacts = this.updateContacts.bind(this);
     this.deleteContact = this.deleteContact.bind(this);
+    this.editContact = this.editContact.bind(this);
 
     this.state = {
       contacts: [],
@@ -24,6 +25,7 @@ class App extends Component {
 
   componentDidMount() {
     this.updateContacts();
+    
   }
 
   deleteContact(data) {
@@ -44,17 +46,31 @@ class App extends Component {
       this.setState({
         contacts: this.state.contacts.concat(this.props.contacts),
         initialData: this.state.initialData + 1
-      });
+      }, () => console.log('Parent contacts: ', this.state.contacts));
     } else if (this.state.initialData > 0 && data) {
-      console.log('data coming from child...', data)
       this.setState({
-        // this.state.contacts.concat(data)
         contacts: [data, ...this.state.contacts]
-      }, () => {
-        console.log(this.state.contacts);
-        this.render();
-      });
+      }, () => console.log('Parent contacts: ', this.state.contacts));
     }
+  }
+
+  editContact(data, index) {
+    console.log('Parent data...', data);
+    console.log('Parent index...', index);
+    
+
+    // const editedContact = [];
+    // this.state.contacts.forEach((element) => {
+    //   editedContact.push(element);
+    // });
+
+    // editedContact[index] = data;
+
+    // this.setState({
+    //   contacts: editedContact
+    // }, () => console.log("NEW: ", this.state.contacts))
+
+    console.log('---------------------------------------------');
   }
 
 
@@ -111,7 +127,7 @@ class App extends Component {
                 <ContactView />
               </Col>
               <Col xsHidden md={4}>
-                <ListContacts deleteContact={this.deleteContact} contacts={this.state.contacts} />
+                <ListContacts editContact={this.editContact} deleteContact={this.deleteContact} contacts={this.state.contacts} />
               </Col>
             </Row>
           </Grid>

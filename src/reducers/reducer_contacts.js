@@ -7,7 +7,7 @@ export default () => {
             email: 'tinagerard@gmail.com',
             address: {
                 addressOne: '780 hiram-douglasville hwy',
-                addressTwo: null,
+                addressTwo: '',
                 city: 'douglasville',
                 state: 'GA',
                 zip: '30134'
@@ -20,7 +20,7 @@ export default () => {
             email: 'tahneegerard@gmail.com',
             address: {
                 addressOne: '780 dallas hwy',
-                addressTwo: null,
+                addressTwo: '',
                 city: 'douglasville',
                 state: 'GA',
                 zip: '30134'
