@@ -6,7 +6,6 @@ import { Button, Modal, Form, FormControl, FormGroup, ControlLabel } from 'react
 import { selectContact } from '../../../actions';
 import './list_contacts.css';
 
-
 class ListContacts extends Component {
     constructor(props) {
         super(props);
@@ -45,7 +44,6 @@ class ListContacts extends Component {
 
     componentWillReceiveProps(props) {
         this.forcingUpdate();
-        // this.render();
     }
 
     componentDidMount() {
@@ -109,14 +107,15 @@ class ListContacts extends Component {
                 state,
                 city,
                 zip
-            } } = this.state;
+            }
+        } = this.state;
 
         const NEW_CONTACT_VALUES = {
             firstName: firstName,
             lastName: lastName,
             email: email,
             number: number,
-            address:{
+            address: {
                 addressOne: addressOne,
                 addressTwo: addressTwo,
                 state: state,
@@ -124,20 +123,47 @@ class ListContacts extends Component {
                 zip: zip
             }
         }
-
         this.props.editContact(NEW_CONTACT_VALUES, this.state.indexOfContact)
-
-     
     }
 
     handleInputChange(event) {
         const { name, value } = event.target;
 
-        this.setState({
-            [name]: value
-        });
+        const fields = [
+            'firstName',
+            'lastName',
+            'email',
+            'number',
+            'addressOne',
+            'addressTwo',
+            'city',
+            'state',
+            'zip'
+        ];
 
-        console.log(`${name}: ${value}`)
+
+        var index = fields.indexOf(name);
+        console.log(`name: ${name} index: ${index} fields: ${fields[index]} `)
+        if (index <= 3) {
+            console.log('first set state'.toUpperCase());
+            this.setState({
+                [name]: value,
+            })
+            // console.log(`index: ${index} field: ${fields[index]}`)
+        } else {
+            console.log('second set state'.toUpperCase())
+            this.setState({
+                address: {
+                    [name]: value,
+                }
+            })
+            // console.log(`index: ${index} field: ${fields[index]}`)
+        }
+
+        // console.log('------------------------');
+        // console.log(`${name}: ${value}`);
+        // console.log(`Index: ${index}`);
+        console.log('------------------------');
     }
 
     editForm() {
@@ -184,11 +210,11 @@ class ListContacts extends Component {
                 <Form inline>
                     <FormGroup controlId="formInlineEmail" className='ml-4 mr-2'>
                         <ControlLabel>State</ControlLabel>{' '}
-                        <FormControl type="text" onChange={this.handleInputChange} value={this.state.address.state} name='state' placeholder="CA" />
+                        <FormControl onChange={this.handleInputChange} value={this.state.address.state} name='state' type="text" placeholder="CA" />
                     </FormGroup>{' '}
                     <FormGroup controlId="formInlineEmail" className='mr-2'>
                         <ControlLabel>Zip Code</ControlLabel>{' '}
-                        <FormControl type="text" value={this.state.address.zip} name='zip' onChange={this.handleInputChange} placeholder="94016" />
+                        <FormControl onChange={this.handleInputChange} value={this.state.address.zip} name='zip' type="text" placeholder="94016" />
                     </FormGroup>{' '}
                 </Form>
 
@@ -285,7 +311,6 @@ class ListContacts extends Component {
         )
     }
 }
-
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ selectContact: selectContact }, dispatch)

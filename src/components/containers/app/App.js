@@ -46,69 +46,26 @@ class App extends Component {
       this.setState({
         contacts: this.state.contacts.concat(this.props.contacts),
         initialData: this.state.initialData + 1
-      }, () => console.log('Parent contacts: ', this.state.contacts));
+      });
     } else if (this.state.initialData > 0 && data) {
       this.setState({
         contacts: [data, ...this.state.contacts]
-      }, () => console.log('Parent contacts: ', this.state.contacts));
+      });
     }
   }
 
   editContact(data, index) {
-    console.log('Parent data...', data);
-    console.log('Parent index...', index);
-    
+    const editedContact = [];
+    this.state.contacts.forEach((element) => {
+      editedContact.push(element);
+    });
 
-    // const editedContact = [];
-    // this.state.contacts.forEach((element) => {
-    //   editedContact.push(element);
-    // });
+    editedContact[index] = data;
 
-    // editedContact[index] = data;
-
-    // this.setState({
-    //   contacts: editedContact
-    // }, () => console.log("NEW: ", this.state.contacts))
-
-    console.log('---------------------------------------------');
+    this.setState({
+      contacts: editedContact
+    })
   }
-
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   var msg = 'COMPONENT SHOULD UPDATE';
-  //   console.log(msg);
-  //   return true;
-  // }
-  // componentWillMount() {
-  //   console.log('Component Will Mount');
-  //   console.log('----------------------------------');
-  // }
-
-  // componentWillReceiveProps(nextProps) {
-  //   console.log('Component will receive props');
-  //   console.log('nextProps', nextProps);
-  //   console.log('----------------------------------');
-  // }
-
-
-  // componentWillUpdate(nextProps, nextState) {
-  //   console.log('Component Will update');
-  //   console.log('nextProps: ', nextProps);
-  //   console.log('nextState: ', nextState);
-  //   console.log('----------------------------------');
-  // }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   console.log('Component Did Update');
-  //   console.log('prevProps: ', prevProps);
-  //   console.log('prevState: ', prevState);
-  //   console.log('----------------------------------');
-  // }
-
-  // componentWillUnmount() {
-  //   console.log('Component Will Unmount')
-  // }
-
 
   render() {
     return (

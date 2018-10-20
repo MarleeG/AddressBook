@@ -1,29 +1,29 @@
 export default () => {
     return [
         {
-            firstName: "Tina",
-            lastName: "Gerard",
-            number: '678-308-9393',
-            email: 'tinagerard@gmail.com',
+            firstName: "Amy",
+            lastName: "Fellows",
+            number: '561-354-9847',
+            email: 'amyfellows@email.com',
             address: {
-                addressOne: '780 hiram-douglasville hwy',
-                addressTwo: '',
-                city: 'douglasville',
-                state: 'GA',
-                zip: '30134'
+                addressOne: '6th avenue',
+                addressTwo: 'apt 765',
+                city: 'Bronx',
+                state: 'NY',
+                zip: '10467'
             }
         },
         {
-            firstName: "Tahnee",
-            lastName: "Gerard",
-            number: '404-458-8765',
-            email: 'tahneegerard@gmail.com',
+            firstName: "Georgia",
+            lastName: "Bison",
+            number: '470-762-9283',
+            email: 'georgiabison@email.com',
             address: {
-                addressOne: '780 dallas hwy',
+                addressOne: '873 spooner str',
                 addressTwo: '',
-                city: 'douglasville',
-                state: 'GA',
-                zip: '30134'
+                city: 'dallas',
+                state: 'TX',
+                zip: '75001'
             }
         }
     ]

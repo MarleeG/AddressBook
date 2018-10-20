@@ -4,9 +4,6 @@ import { Alert } from 'react-bootstrap';
 
 
 class ContactView extends Component {
-    // componentWillReceiveProps(props){
-    //     console.log('contact view :: ', props)
-    // }
     renderSelectedContact() {
         //  const { firstName } = this.props.contact
         if (!this.props.contact) {
@@ -41,7 +38,6 @@ class ContactView extends Component {
             </div>
         );
     }
-
     render() {
         return (
             <div>
