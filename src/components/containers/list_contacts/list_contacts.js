@@ -141,7 +141,6 @@ class ListContacts extends Component {
             'zip'
         ];
 
-
         var index = fields.indexOf(name);
         if (index <= 3) {
             this.setState({
