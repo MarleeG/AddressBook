@@ -143,27 +143,18 @@ class ListContacts extends Component {
 
 
         var index = fields.indexOf(name);
-        console.log(`name: ${name} index: ${index} fields: ${fields[index]} `)
         if (index <= 3) {
-            console.log('first set state'.toUpperCase());
             this.setState({
                 [name]: value,
             })
             // console.log(`index: ${index} field: ${fields[index]}`)
-        } else {
-            console.log('second set state'.toUpperCase())
+        } else if (index !== -1){
             this.setState({
                 address: {
                     [name]: value,
                 }
             })
-            // console.log(`index: ${index} field: ${fields[index]}`)
         }
-
-        // console.log('------------------------');
-        // console.log(`${name}: ${value}`);
-        // console.log(`Index: ${index}`);
-        console.log('------------------------');
     }
 
     editForm() {
