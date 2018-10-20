@@ -93,6 +93,7 @@ class App extends Component {
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     contacts: state.contacts,
