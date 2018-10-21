@@ -1,6 +1,6 @@
 # AddressBook
 
-This web app allows users to create a contact, view contacts, update contacts, delete contacts. 
+This web app allows users to create a contact, view contacts, update contacts, and delete contacts. 
 
 
 ## Built With
