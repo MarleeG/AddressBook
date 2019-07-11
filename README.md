@@ -2,7 +2,6 @@
 
 This web app allows users to create a contact, view contacts, update contacts, and delete contacts. 
 
-
 ## Built With
 
 * [React.js](https://reactjs.org/)
@@ -20,7 +19,6 @@ This web app allows users to create a contact, view contacts, update contacts, a
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 
 * [JQuery](https://api.jquery.com/)
-
 
 ## Deployed App
 * [Address Book](https://address-book-marlee-gerard.herokuapp.com) - App
