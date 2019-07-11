@@ -22,6 +22,5 @@ This web app allows users to create a contact, view contacts, update contacts, a
 * [JQuery](https://api.jquery.com/)
 
 
-
 ## Deployed App
 * [Address Book](https://address-book-marlee-gerard.herokuapp.com) - App
