@@ -6,7 +6,7 @@
     "eslint-utils": "^1.4.2",
     "handlebars": "^4.5.3",
     "lodash": "^4.17.19",
-    "lodash-es": "^4.17.15",
+    "lodash-es": "^4.17.21",
     "lodash.template": "^4.5.0",
     "react": "^16.8.6",
     "react-bootstrap": "^0.32.4",
