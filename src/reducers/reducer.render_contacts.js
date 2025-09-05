@@ -1,3 +1,5 @@
-export default () => {
-    return false;
-}
+const renderContactsReducer = () => {
+  return false;
+};
+
+export default renderContactsReducer;
